@@ -4,6 +4,7 @@ from pathlib import Path
 
 from ipex_llm.transformers import AutoModel, AutoModelForCausalLM
 from transformers import AutoTokenizer, LlamaTokenizer
+import intel_extension_for_pytorch as ipex
 
 from configs.model_config import MODEL_ROOT_PATH
 

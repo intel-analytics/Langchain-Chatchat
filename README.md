@@ -102,9 +102,11 @@ In **Anaconda Prompt (miniconda3)**, under the root directory of Langchain-Chatc
 
 ```cmd
 conda activate ipex-llm-langchain-chatchat
+
 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 set SYCL_CACHE_PERSISTENT=1
 set BIGDL_LLM_XMX_DISABLED=1
+
 python warmup.py
 ```
 
@@ -115,10 +117,14 @@ python warmup.py
 Open **Anaconda Prompt (miniconda3)** and run the following commands:
 ```cmd
 conda activate ipex-llm-langchain-chatchat
+
 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 set SYCL_CACHE_PERSISTENT=1
 set BIGDL_LLM_XMX_DISABLED=1
+
+set BIGDL_IMPORT_IPEX=0
 set no_proxy=localhost,127.0.0.1
+
 python startup.py -a
 ```
 

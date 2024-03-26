@@ -8,6 +8,8 @@ from datetime import datetime
 from pprint import pprint
 from langchain_core._api import deprecated
 
+import intel_extension_for_pytorch as ipex
+
 try:
     import numexpr
 

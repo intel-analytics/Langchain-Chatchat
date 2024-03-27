@@ -175,7 +175,7 @@ def create_model_worker_app(log_level: str = "INFO", **kwargs) -> FastAPI:
         else:
             from fastchat.serve.model_worker import GptqConfig, AWQConfig, worker_id
             if args.device in ['xpu']:
-                from ipex_llm.serving.fastchat.bigdl_worker import app, BigDLLLMWorker
+                from ipex_llm.serving.fastchat.ipex_llm_worker import app, BigDLLLMWorker
             else:
                 from fastchat.serve.model_worker import app, ModelWorker
 
@@ -235,9 +235,9 @@ def create_model_worker_app(log_level: str = "INFO", **kwargs) -> FastAPI:
                     trust_remote_code=True,
                     stream_interval=args.stream_interval,
                 )
-                sys.modules["ipex_llm.serving.fastchat.bigdl_worker"].args = args
-                sys.modules["ipex_llm.serving.fastchat.bigdl_worker"].worker = worker
-                sys.modules["ipex_llm.serving.fastchat.bigdl_worker"].logger.setLevel(log_level)
+                sys.modules["ipex_llm.serving.fastchat.ipex_llm_worker"].args = args
+                sys.modules["ipex_llm.serving.fastchat.ipex_llm_worker"].worker = worker
+                sys.modules["ipex_llm.serving.fastchat.ipex_llm_worker"].logger.setLevel(log_level)
             else:
                 worker = ModelWorker(
                     controller_addr=args.controller_address,

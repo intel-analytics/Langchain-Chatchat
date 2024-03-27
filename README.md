@@ -80,7 +80,7 @@ Switch to the root directory of Langchain-Chatchat you've downloaded (refer to t
     ```bash
     python copy_config_example.py
     ```
-- Edit the file `configs\model_config.py`, change `MODEL_ROOT_PATH` to the absolute path where you put the downloaded models (LLMs, embedding models, ranking models, etc.)
+- Edit the file `configs\model_config.py`, change `MODEL_ROOT_PATH` to the absolute path of the parent directory where all the downloaded models (LLMs, embedding models, ranking models, etc.) are stored.
 
 ### Download Models
 Download the models and place them in the path `MODEL_ROOT_PATH` (refer to details in [Configuration](#configuration) section). 

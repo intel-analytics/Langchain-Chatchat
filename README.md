@@ -83,7 +83,7 @@ Switch to the root directory of Langchain-Chatchat you've downloaded (refer to t
 - Edit the file `configs\model_config.py`, change `MODEL_ROOT_PATH` to the absolute path of the parent directory where all the downloaded models (LLMs, embedding models, ranking models, etc.) are stored.
 
 ### Download Models
-Download the models and place them in the path `MODEL_ROOT_PATH` (refer to details in [Configuration](#configuration) section). 
+Download the models and place them in the directory `MODEL_ROOT_PATH` (refer to details in [Configuration](#configuration) section). 
 
 Currently, we support only the LLM/embedding models specified in the table below. You can download these models using the link provided in the table. **Note: Ensure the model folder name matches the last segment of the model ID following "/", for example, for `THUDM/chatglm3-6b`, the model folder name should be `chatglm3-6b`.**
 

@@ -167,7 +167,7 @@ For more information about how to use Langchain-Chatchat, refer to Official Quic
 
 #### 1. Version Compatibility
 
-Ensure that you have installed versions of `ipex-llm>=2.1.0b20240326`. To upgrade, follow the [installation instructions](#2--install-ipex-llm) above.
+Ensure that you have installed versions of `ipex-llm>=2.1.0b20240327`. To upgrade, follow the [installation instructions](#2--install-ipex-llm) above.
 
 #### 2. Prompt Templates
 

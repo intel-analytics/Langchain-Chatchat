@@ -54,21 +54,25 @@ Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.re
 
 #### 1. Create a Conda Environment
 Open **Anaconda Prompt (miniconda3)**, and run the following commands to create a new python environment:
-  ```cmd
-  conda create -n ipex-llm-langchain-chatchat python=3.11 libuv 
-  conda activate ipex-llm-langchain-chatchat
-  ```
+```cmd
+conda create -n ipex-llm-langchain-chatchat python=3.11 libuv 
+conda activate ipex-llm-langchain-chatchat
+```
 
-  > [!NOTE]
-  > When creating the conda environment we used python 3.11, which is different from the default recommended python version 3.9 in [Install IPEX-LLM on Windows with Intel GPU](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html)
+> [!NOTE]
+> When creating the conda environment we used python 3.11, which is different from the default recommended python version 3.9 in [Install IPEX-LLM on Windows with Intel GPU](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html)
 
+#### 2. Install Intel oneAPI Base Toolkit 2024.0
+```cmd
+pip install dpcpp-cpp-rt==2024.0.2 mkl-dpcpp==2024.0.0 onednn==2024.0.0
+```
 
-#### 2.  Install `ipex-llm` 
-  ```cmd
-  pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
-  pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
-  ```
-#### 3. Install Langchain-Chatchat Dependencies 
+#### 3.  Install `ipex-llm` 
+```cmd
+pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
+pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
+```
+#### 4. Install Langchain-Chatchat Dependencies 
 Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**).
   ```cmd
   cd C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm
@@ -105,7 +109,6 @@ In **Anaconda Prompt (miniconda3)**, under the root directory of Langchain-Chatc
 ```cmd
 conda activate ipex-llm-langchain-chatchat
 
-call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 set SYCL_CACHE_PERSISTENT=1
 set BIGDL_LLM_XMX_DISABLED=1
 
@@ -120,7 +123,6 @@ Open **Anaconda Prompt (miniconda3)** and run the following commands:
 ```cmd
 conda activate ipex-llm-langchain-chatchat
 
-call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 set SYCL_CACHE_PERSISTENT=1
 set BIGDL_LLM_XMX_DISABLED=1
 
@@ -129,9 +131,6 @@ set no_proxy=localhost,127.0.0.1
 
 python startup.py -a
 ```
-
-> [!NOTE]
-> Please skip the `call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"` step if you have done that during [one-time warmup](#one-time-warm-up).
 
 You can find the Web UI's URL printted on the terminal logs, e.g. http://localhost:8501/.
 

@@ -25,7 +25,7 @@
 The following sections introduce how to install and run Langchain-chatchat on **Intel Core Ultra platform (MTL)**, utilizing the iGPU to run both LLMs and embedding models. 
 
 ## Table of Contents
-1. [RAG Architecture](langchain-chatchat-architecture)
+1. [RAG Architecture](#langchain-chatchat-architecture)
 2. [Installation](#installation)
 3. [One-time Warmup](#one-time-warm-up)
 4. [Start the Service](#start-the-service)
@@ -77,7 +77,7 @@ Switch to the root directory of Langchain-Chatchat you've downloaded (refer to t
 
 ### Configuration
 -  In root directory of Langchain-Chatchat, run the following command to create a config:
-    ```bash
+    ```cmd
     python copy_config_example.py
     ```
 - Edit the file `configs\model_config.py`, change `MODEL_ROOT_PATH` to the absolute path of the parent directory where all the downloaded models (LLMs, embedding models, ranking models, etc.) are stored.

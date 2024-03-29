@@ -52,6 +52,10 @@ async def knowledge_base_chat(query: str = Body(..., description="用户输入",
                                   "default",
                                   description="使用的prompt模板名称(在configs/prompt_config.py中配置)"
                               ),
+                              language: str = Body(
+                                  "English",
+                                  "当前界面语言"
+                              ),
                               request: Request = None,
                               ):
     kb = KBServiceFactory.get_service_by_name(knowledge_base_name)
@@ -102,7 +106,10 @@ async def knowledge_base_chat(query: str = Body(..., description="用户输入",
         context = "\n".join([doc.page_content for doc in docs])
 
         if len(docs) == 0:  # 如果没有找到相关文档，使用empty模板
-            prompt_template = get_prompt_template("knowledge_base_chat", "empty")
+            if language == "en":
+                prompt_template = get_prompt_template("knowledge_base_chat", "empty_en")
+            else:
+                prompt_template = get_prompt_template("knowledge_base_chat", "empty_cn")
         else:
             prompt_template = get_prompt_template("knowledge_base_chat", prompt_name)
         input_msg = History(role="user", content=prompt_template).to_msg_template(False)

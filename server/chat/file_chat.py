@@ -106,6 +106,7 @@ async def file_chat(query: str = Body(..., description="用户输入", examples=
                     temperature: float = Body(TEMPERATURE, description="LLM 采样温度", ge=0.0, le=1.0),
                     max_tokens: Optional[int] = Body(None, description="限制LLM生成Token数量，默认None代表模型最大值"),
                     prompt_name: str = Body("default", description="使用的prompt模板名称(在configs/prompt_config.py中配置)"),
+                    language: str = Body("English", description="当前界面语言")
                 ):
     if knowledge_id not in memo_faiss_pool.keys():
         return BaseResponse(code=404, msg=f"未找到临时知识库 {knowledge_id}，请先上传文件")
@@ -132,7 +133,10 @@ async def file_chat(query: str = Body(..., description="用户输入", examples=
 
         context = "\n".join([doc.page_content for doc in docs])
         if len(docs) == 0: ## 如果没有找到相关文档，使用Empty模板
-            prompt_template = get_prompt_template("knowledge_base_chat", "empty")
+            if language == "English":
+                prompt_template = get_prompt_template("knowledge_base_chat", "empty_en")
+            else:
+                prompt_template = get_prompt_template("knowledge_base_chat", "empty_cn")
         else:
             prompt_template = get_prompt_template("knowledge_base_chat", prompt_name)
         input_msg = History(role="user", content=prompt_template).to_msg_template(False)

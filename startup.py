@@ -339,7 +339,7 @@ def run_controller(log_level: str = "INFO", started_event: mp.Event = None):
             return {"code": 500, "msg": msg[language]}
 
         if new_model_name:
-            logger.info(f"Starting LLM switch: From {model_name} to {new_model_name}")
+            logger.info(f"Start switching LLM: From {model_name} to {new_model_name}")
         else:
             logger.info(f"About to stop LLM: {model_name}")
 

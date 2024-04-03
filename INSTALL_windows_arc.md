@@ -1,4 +1,5 @@
 # Setup Guide for Windows with Intel Arc A-Series GPU
+
 1. [Installation](#installation)
 2. [Start the Service](#start-the-service)
 

@@ -1,4 +1,5 @@
-# # Setup Guide for Linux on Intel Data Center Max Series GPU
+# Setup Guide for Linux on Intel Data Center Max Series GPU
+
 1. [Installation](#installation)
 2. [Start the Service](#start-the-service)
 

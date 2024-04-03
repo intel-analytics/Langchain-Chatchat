@@ -44,7 +44,7 @@ from configs import VERSION
 
 @deprecated(
     since="0.3.0",
-    message="模型启动功能将于 Langchain-Chatchat 0.3.x重写,支持更多模式和加速启动，0.2.x中相关功能将废弃",
+    message="The model startup functionality will be rewritten in Langchain-Chatchat 0.3.x to support more modes and accelerate startup. The related functionality in 0.2.x will be deprecated.",
     removal="0.3.0")
 def create_controller_app(
         dispatch_method: str,
@@ -339,9 +339,9 @@ def run_controller(log_level: str = "INFO", started_event: mp.Event = None):
             return {"code": 500, "msg": msg[language]}
 
         if new_model_name:
-            logger.info(f"开始切换LLM模型：从 {model_name} 到 {new_model_name}")
+            logger.info(f"Starting LLM switch: From {model_name} to {new_model_name}")
         else:
-            logger.info(f"即将停止LLM模型： {model_name}")
+            logger.info(f"About to stop LLM: {model_name}")
 
         if model_name not in available_models:
             msg = {
@@ -615,26 +615,26 @@ def dump_server_info(after_start=False, args=None):
 
     print("\n")
     print("=" * 30 + "Langchain-Chatchat Configuration" + "=" * 30)
-    print(f"操作系统：{platform.platform()}.")
-    print(f"python版本：{sys.version}")
-    print(f"项目版本：{VERSION}")
-    print(f"langchain版本：{langchain.__version__}. fastchat版本：{fastchat.__version__}")
+    print(f"Operating system: {platform.platform()}.")
+    print(f"Python version: {sys.version}")
+    print(f"Project version: {VERSION}")
+    print(f"langchain version: {langchain.__version__}. fastchat version: {fastchat.__version__}")
     print("\n")
 
     models = LLM_MODELS
     if args and args.model_name:
         models = args.model_name
 
-    print(f"当前使用的分词器：{TEXT_SPLITTER_NAME}")
-    print(f"当前启动的LLM模型：{models} @ {llm_device()}")
+    print(f"Current tokenizer: {TEXT_SPLITTER_NAME}")
+    print(f"Current running LLM: {models} @ {llm_device()}")
 
     for model in models:
         pprint(get_model_worker_config(model))
-    print(f"当前Embbedings模型： {EMBEDDING_MODEL} @ {embedding_device()}")
+    print(f"Current embbeding model: {EMBEDDING_MODEL} @ {embedding_device()}")
 
     if after_start:
         print("\n")
-        print(f"服务端运行信息：")
+        print(f"Server runtime information: ")
         if args.openai_api:
             print(f"    OpenAI API Server: {fschat_openai_api_address()}")
         if args.api:
@@ -699,8 +699,8 @@ async def start_main_server():
     dump_server_info(args=args)
 
     if len(sys.argv) > 1:
-        logger.info(f"正在启动服务：")
-        logger.info(f"如需查看 llm_api 日志，请前往 {LOG_PATH}")
+        logger.info(f"Starting the service: ")
+        logger.info(f"To view the llm_api logs, please go to {LOG_PATH}")
 
     processes = {"online_api": {}, "model_worker": {}}
 
@@ -831,7 +831,7 @@ async def start_main_server():
                 if isinstance(cmd, list):
                     model_name, cmd, new_model_name = cmd
                     if cmd == "start":  # 运行新模型
-                        logger.info(f"准备启动新模型进程：{new_model_name}")
+                        logger.info(f"Preparing to launch the new model process: {new_model_name}")
                         process = Process(
                             target=run_model_worker,
                             name=f"model_worker - {new_model_name}",
@@ -846,18 +846,18 @@ async def start_main_server():
                         process.name = f"{process.name} ({process.pid})"
                         processes["model_worker"][new_model_name] = process
                         e.wait()
-                        logger.info(f"成功启动新模型进程：{new_model_name}")
+                        logger.info(f"Successfully launched the new model process: {new_model_name}")
                     elif cmd == "stop":
                         if process := processes["model_worker"].get(model_name):
                             time.sleep(1)
                             process.terminate()
                             process.join()
-                            logger.info(f"停止模型进程：{model_name}")
+                            logger.info(f"Stop the model process: {model_name}")
                         else:
-                            logger.error(f"未找到模型进程：{model_name}")
+                            logger.error(f"Model process not found: {model_name}")
                     elif cmd == "replace":
                         if process := processes["model_worker"].pop(model_name, None):
-                            logger.info(f"停止模型进程：{model_name}")
+                            logger.info(f"Stop the model process: {model_name}")
                             start_time = datetime.now()
                             time.sleep(1)
                             process.terminate()
@@ -877,9 +877,9 @@ async def start_main_server():
                             processes["model_worker"][new_model_name] = process
                             e.wait()
                             timing = datetime.now() - start_time
-                            logger.info(f"成功启动新模型进程：{new_model_name}。用时：{timing}。")
+                            logger.info(f"Successfully launched the new model process: {new_model_name}. Time taken: {timing}.")
                         else:
-                            logger.error(f"未找到模型进程：{model_name}")
+                            logger.error(f"Model process not found: {model_name}")
 
             # for process in processes.get("model_worker", {}).values():
             #     process.join()

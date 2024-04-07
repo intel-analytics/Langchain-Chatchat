@@ -205,7 +205,7 @@ def launch_worker(item, args, worker_args=worker_args):
     args.model_path, args.worker_host, args.worker_port = item.split("@")
     args.worker_address = f"http://{args.worker_host}:{args.worker_port}"
     print("*" * 80)
-    print(f"如长时间未启动，请到{LOG_PATH}{log_name}.log下查看日志")
+    print(f"If it does not start for a long time, please check the log at {LOG_PATH}{log_name}.log")
     worker_str_args = string_args(args, worker_args)
     print(worker_str_args)
     worker_sh = base_launch_sh.format("model_worker", worker_str_args, LOG_PATH, f"worker_{log_name}")
@@ -226,12 +226,12 @@ def launch_all(args,
     controller_check_sh = base_check_sh.format(LOG_PATH, "controller", "controller")
     subprocess.run(controller_sh, shell=True, check=True)
     subprocess.run(controller_check_sh, shell=True, check=True)
-    print(f"worker启动时间视设备不同而不同，约需3-10分钟，请耐心等待...")
+    print(f"The startup time of the worker varies depending on the device, and it takes about 3-10 minutes. Please be patient...")
     if isinstance(args.model_path_address, str):
         launch_worker(args.model_path_address, args=args, worker_args=worker_args)
     else:
         for idx, item in enumerate(args.model_path_address):
-            print(f"开始加载第{idx}个模型:{item}")
+            print(f"Start to load the {idx} model: {item}")
             launch_worker(item, args=args, worker_args=worker_args)
 
     server_str_args = string_args(args, server_args)

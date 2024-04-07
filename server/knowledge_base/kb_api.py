@@ -30,7 +30,7 @@ def create_kb(knowledge_base_name: str = Body(..., examples=["samples"]),
     try:
         kb.create_kb()
     except Exception as e:
-        msg = f"创建知识库出错： {e}"
+        msg = f"An error occurred while creating the knowledge base: {e}"
         logger.error(f'{e.__class__.__name__}: {msg}',
                      exc_info=e if log_verbose else None)
         return BaseResponse(code=500, msg=msg)
@@ -57,7 +57,7 @@ def delete_kb(
         if status:
             return BaseResponse(code=200, msg=f"成功删除知识库 {knowledge_base_name}")
     except Exception as e:
-        msg = f"删除知识库时出现意外： {e}"
+        msg = f"An unexpected error occurred while deleting the knowledge base: {e}"
         logger.error(f'{e.__class__.__name__}: {msg}',
                      exc_info=e if log_verbose else None)
         return BaseResponse(code=500, msg=msg)

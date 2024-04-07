@@ -24,7 +24,7 @@ test_files = {
     "test.txt": get_file_path("samples", "test.txt"),
 }
 
-print("\n\nApiRquest调用\n")
+print("\n\nInvoke ApiRquest\n")
 
 
 def test_delete_kb_before():
@@ -39,19 +39,19 @@ def test_delete_kb_before():
 
 
 def test_create_kb():
-    print(f"\n尝试用空名称创建知识库：")
+    print(f"\nAttempting to create a knowledge base with an empty name: ")
     data = api.create_knowledge_base(" ")
     pprint(data)
     assert data["code"] == 404
     assert data["msg"] == "知识库名称不能为空，请重新填写知识库名称"
 
-    print(f"\n创建新知识库： {kb}")
+    print(f"\nCreating a new knowledge base: {kb}")
     data = api.create_knowledge_base(kb)
     pprint(data)
     assert data["code"] == 200
     assert data["msg"] == f"已新增知识库 {kb}"
 
-    print(f"\n尝试创建同名知识库： {kb}")
+    print(f"\nAttempting to create a knowledge base with the same name: {kb}")
     data = api.create_knowledge_base(kb)
     pprint(data)
     assert data["code"] == 404
@@ -68,21 +68,21 @@ def test_list_kbs():
 def test_upload_docs():
     files = list(test_files.values())
 
-    print(f"\n上传知识文件")
+    print(f"\nUploading knowledge file")
     data = {"knowledge_base_name": kb, "override": True}
     data = api.upload_kb_docs(files, **data)
     pprint(data)
     assert data["code"] == 200
     assert len(data["data"]["failed_files"]) == 0
 
-    print(f"\n尝试重新上传知识文件， 不覆盖")
+    print(f"\nAttempting to re-upload knowledge file without overwriting")
     data = {"knowledge_base_name": kb, "override": False}
     data = api.upload_kb_docs(files, **data)
     pprint(data)
     assert data["code"] == 200
     assert len(data["data"]["failed_files"]) == len(test_files)
 
-    print(f"\n尝试重新上传知识文件， 覆盖，自定义docs")
+    print(f"\nAttempting to re-upload knowledge file with overwriting and customize docs")
     docs = {"FAQ.MD": [{"page_content": "custom docs", "metadata": {}}]}
     data = {"knowledge_base_name": kb, "override": True, "docs": docs}
     data = api.upload_kb_docs(files, **data)
@@ -92,7 +92,7 @@ def test_upload_docs():
 
 
 def test_list_files():
-    print("\n获取知识库中文件列表：")
+    print("\nFetching the list of files in the knowledge base: ")
     data = api.list_kb_docs(knowledge_base_name=kb)
     pprint(data)
     assert isinstance(data, list)
@@ -102,7 +102,7 @@ def test_list_files():
 
 def test_search_docs():
     query = "介绍一下langchain-chatchat项目"
-    print("\n检索知识库：")
+    print("\nRetrieving from the knowledge base: ")
     print(query)
     data = api.search_kb_docs(query, kb)
     pprint(data)
@@ -110,7 +110,7 @@ def test_search_docs():
 
 
 def test_update_docs():
-    print(f"\n更新知识文件")
+    print(f"\nUpdating knowledge file")
     data = api.update_kb_docs(knowledge_base_name=kb, file_names=list(test_files))
     pprint(data)
     assert data["code"] == 200
@@ -118,14 +118,14 @@ def test_update_docs():
 
 
 def test_delete_docs():
-    print(f"\n删除知识文件")
+    print(f"\nDeleting knowledge file")
     data = api.delete_kb_docs(knowledge_base_name=kb, file_names=list(test_files))
     pprint(data)
     assert data["code"] == 200
     assert len(data["data"]["failed_files"]) == 0
 
     query = "介绍一下langchain-chatchat项目"
-    print("\n尝试检索删除后的检索知识库：")
+    print("\nAttempting to retrieve from the knowledge base after deletion: ")
     print(query)
     data = api.search_kb_docs(query, kb)
     pprint(data)
@@ -133,7 +133,7 @@ def test_delete_docs():
 
 
 def test_recreate_vs():
-    print("\n重建知识库：")
+    print("\nRebuilding the knowledge base: ")
     r = api.recreate_vector_store(kb)
     for data in r:
         assert isinstance(data, dict)
@@ -141,7 +141,7 @@ def test_recreate_vs():
         print(data["msg"])
 
     query = "本项目支持哪些文件格式?"
-    print("\n尝试检索重建后的检索知识库：")
+    print("\nAttempting to retrieve from the rebuilt knowledge base: ")
     print(query)
     data = api.search_kb_docs(query, kb)
     pprint(data)
@@ -149,12 +149,12 @@ def test_recreate_vs():
 
 
 def test_delete_kb_after():
-    print("\n删除知识库")
+    print("\nDeleting knowledge base")
     data = api.delete_knowledge_base(kb)
     pprint(data)
 
     # check kb not exists anymore
-    print("\n获取知识库列表：")
+    print("\nFetching the list of knowledge bases: ")
     data = api.list_knowledge_bases()
     pprint(data)
     assert isinstance(data, list) and len(data) > 0

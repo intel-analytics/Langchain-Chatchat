@@ -72,7 +72,7 @@ def recreate_summary_vector_store(
 
                 status_kb_summary = kb_summary.add_kb_summary(summary_combine_docs=docs)
                 if status_kb_summary:
-                    logger.info(f"({i + 1} / {len(files)}): {file_name} 总结完成")
+                    logger.info(f"({i + 1} / {len(files)}): {file_name} Summary completed")
                     yield json.dumps({
                         "code": 200,
                         "msg": f"({i + 1} / {len(files)}): {file_name}",
@@ -82,7 +82,7 @@ def recreate_summary_vector_store(
                     }, ensure_ascii=False)
                 else:
 
-                    msg = f"知识库'{knowledge_base_name}'总结文件‘{file_name}’时出错。已跳过。"
+                    msg = f"An error occurred while summarizing the file '{file_name}' in the knowledge base '{knowledge_base_name}'. Skipped."
                     logger.error(msg)
                     yield json.dumps({
                         "code": 500,
@@ -148,7 +148,7 @@ def summary_file_to_vector_store(
 
             status_kb_summary = kb_summary.add_kb_summary(summary_combine_docs=docs)
             if status_kb_summary:
-                logger.info(f" {file_name} 总结完成")
+                logger.info(f" {file_name} Summary completed")
                 yield json.dumps({
                     "code": 200,
                     "msg": f"{file_name} 总结完成",
@@ -156,7 +156,7 @@ def summary_file_to_vector_store(
                 }, ensure_ascii=False)
             else:
 
-                msg = f"知识库'{knowledge_base_name}'总结文件‘{file_name}’时出错。已跳过。"
+                msg = f"An error occurred while summarizing the file ‘{file_name}’ in the knowledge base '{knowledge_base_name}'. Skipped."
                 logger.error(msg)
                 yield json.dumps({
                     "code": 500,

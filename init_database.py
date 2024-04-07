@@ -117,4 +117,4 @@ if __name__ == "__main__":
         prune_folder_files(args.kb_name)
 
     end_time = datetime.now()
-    print(f"总计用时： {end_time-start_time}")
+    print(f"Total time: {end_time-start_time}")

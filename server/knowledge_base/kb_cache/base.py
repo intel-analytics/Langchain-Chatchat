@@ -34,11 +34,11 @@ class ThreadSafeObject:
             if self._pool is not None:
                 self._pool._cache.move_to_end(self.key)
             if log_verbose:
-                logger.info(f"{owner} 开始操作：{self.key}。{msg}")
+                logger.info(f"{owner} started the operation: {self.key}. {msg}")
             yield self._obj
         finally:
             if log_verbose:
-                logger.info(f"{owner} 结束操作：{self.key}。{msg}")
+                logger.info(f"{owner} ended the operation: {self.key}. {msg}")
             self._lock.release()
 
     def start_loading(self):
@@ -92,7 +92,7 @@ class CachePool:
     def acquire(self, key: Union[str, Tuple], owner: str = "", msg: str = ""):
         cache = self.get(key)
         if cache is None:
-            raise RuntimeError(f"请求的资源 {key} 不存在")
+            raise RuntimeError(f"The requested resource {key} does not exist")
         elif isinstance(cache, ThreadSafeObject):
             self._cache.move_to_end(key)
             return cache.acquire(owner=owner, msg=msg)

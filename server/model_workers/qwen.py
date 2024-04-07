@@ -63,7 +63,7 @@ class QwenWorker(ApiModelWorker):
                         "code": None,
                     }
                 }
-                self.logger.error(f"请求千问 API 时发生错误：{data}")
+                self.logger.error(f"An error occurred when requesting the qwen API: {data}")
                 yield data
 
     def do_embeddings(self, params: ApiEmbeddingsParams) -> Dict:
@@ -91,7 +91,7 @@ class QwenWorker(ApiModelWorker):
                                 "code": None,
                             }
                         }
-                self.logger.error(f"请求千问 API 时发生错误：{data}")
+                self.logger.error(f"An error occurred when requesting the Qwen API: {data}")
                 return data
             else:
                 embeddings = [x["embedding"] for x in resp["output"]["embeddings"]]

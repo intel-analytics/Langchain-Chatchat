@@ -158,7 +158,7 @@ def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):
             document_loaders_module = importlib.import_module('langchain.document_loaders')
         DocumentLoader = getattr(document_loaders_module, loader_name)
     except Exception as e:
-        msg = f"为文件{file_path}查找加载器{loader_name}时出错：{e}"
+        msg = f"An error occurred while searching for the loader {loader_name} for the file {file_path}: {e}"
         logger.error(f'{e.__class__.__name__}: {msg}',
                      exc_info=e if log_verbose else None)
         document_loaders_module = importlib.import_module('langchain.document_loaders')
@@ -323,7 +323,7 @@ class KnowledgeFile:
         if not docs:
             return []
 
-        print(f"文档切分示例：{docs[0]}")
+        print(f"Document segmentation example: {docs[0]}")
         if zh_title_enhance:
             docs = func_zh_title_enhance(docs)
         self.splited_docs = docs
@@ -373,7 +373,7 @@ def files2docs_in_thread(
         try:
             return True, (file.kb_name, file.filename, file.file2text(**kwargs))
         except Exception as e:
-            msg = f"从文件 {file.kb_name}/{file.filename} 加载文档时出错：{e}"
+            msg = f"An error occurred while loading the document from the file {file.kb_name}/{file.filename}: {e}"
             logger.error(f'{e.__class__.__name__}: {msg}',
                          exc_info=e if log_verbose else None)
             return False, (file.kb_name, file.filename, msg)

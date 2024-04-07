@@ -35,7 +35,7 @@ def test_running_models(api="/llm_model/list_running_models"):
     url = api_base_url + api
     r = requests.post(url)
     assert r.status_code == 200
-    print("\n获取当前正在运行的模型列表：")
+    print("\nFetching the list of currently running models: ")
     pprint(r.json())
     assert isinstance(r.json()["data"], list)
     assert len(r.json()["data"]) > 0
@@ -62,7 +62,7 @@ def test_change_model(api="/llm_model/change_model"):
     local_models = [x for x in running_models if not get_model_worker_config(x).get("online_api")]
     model_name = random.choice(local_models)
     new_model_name = random.choice(availabel_new_models)
-    print(f"\n尝试将模型从 {model_name} 切换到 {new_model_name}")
+    print(f"\nAttempting to switch the model from {model_name} to {new_model_name}")
     r = requests.post(url, json={"model_name": model_name, "new_model_name": new_model_name})
     assert r.status_code == 200
 

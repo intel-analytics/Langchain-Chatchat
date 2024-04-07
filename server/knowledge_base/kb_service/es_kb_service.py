@@ -29,13 +29,13 @@ class ESKBService(KBService):
                 self.es_client_python =  Elasticsearch(f"http://{self.IP}:{self.PORT}",
                 basic_auth=(self.user,self.password))
             else:
-                logger.warning("ES未配置用户名和密码")
+                logger.warning("ES is not configured with a username and password")
                 self.es_client_python = Elasticsearch(f"http://{self.IP}:{self.PORT}")
         except ConnectionError:
-            logger.error("连接到 Elasticsearch 失败！")
+            logger.error("Failed to connect to Elasticsearch!")
             raise ConnectionError
         except Exception as e:
-            logger.error(f"Error 发生 : {e}")
+            logger.error(f"Error occurred: {e}")
             raise e
         try:
             # 首先尝试通过es_client_python创建
@@ -50,7 +50,7 @@ class ESKBService(KBService):
             }
             self.es_client_python.indices.create(index=self.index_name, mappings=mappings)
         except BadRequestError as e:
-            logger.error("创建索引失败,重新")
+            logger.error("Failed to create the index, please retry")
             logger.error(e)
 
         try:
@@ -66,7 +66,7 @@ class ESKBService(KBService):
                 es_password=self.password
             )
             else:
-                logger.warning("ES未配置用户名和密码")
+                logger.warning("ES is not configured with a username and password")
                 self.db_init = ElasticsearchStore(
                     es_url=f"http://{self.IP}:{self.PORT}",
                     index_name=self.index_name,
@@ -75,11 +75,11 @@ class ESKBService(KBService):
                     embedding=self.embeddings_model,
                 )
         except ConnectionError:
-            print("### 初始化 Elasticsearch 失败！")
-            logger.error("### 初始化 Elasticsearch 失败！")
+            print("### Initialization of Elasticsearch failed!")
+            logger.error("### Initialization of Elasticsearch failed!")
             raise ConnectionError
         except Exception as e:
-            logger.error(f"Error 发生 : {e}")
+            logger.error(f"Error occurred: {e}")
             raise e
         try:
             # 尝试通过db_init创建索引
@@ -88,7 +88,7 @@ class ESKBService(KBService):
                                                      dims_length=self.dims_length
                                                      )
         except Exception as e:
-            logger.error("创建索引失败...")
+            logger.error("Failed to create the index...")
             logger.error(e)
             # raise e
 
@@ -141,10 +141,10 @@ class ESKBService(KBService):
                         verify_certs=False)
         except ConnectionError as ce:
             print(ce)
-            print("连接到 Elasticsearch 失败！")
-            logger.error("连接到 Elasticsearch 失败！")
+            print("Failed to connect to Elasticsearch!")
+            logger.error("Failed to connect to Elasticsearch!")
         except Exception as e:
-            logger.error(f"Error 发生 : {e}")
+            logger.error(f"Error occurred: {e}")
             print(e)
 
 
@@ -212,7 +212,7 @@ class ESKBService(KBService):
         print("*"*100)
         self._load_es(docs=docs, embed_model=self.embeddings_model)
         # 获取 id 和 source , 格式：[{"id": str, "metadata": dict}, ...]
-        print("写入数据成功.")
+        print("Data written successfully.")
         print("*"*100)
 
         if self.es_client_python.indices.exists(index=self.index_name):
@@ -230,7 +230,7 @@ class ESKBService(KBService):
             # 注意设置size，默认返回10个。
             search_results = self.es_client_python.search(body=query, size=50)
             if len(search_results["hits"]["hits"]) == 0:
-                raise ValueError("召回元素个数为0")
+                raise ValueError("Number of retrieved elements is 0")
         info_docs = [{"id":hit["_id"], "metadata": hit["_source"]["metadata"]} for hit in search_results["hits"]["hits"]]
         return info_docs
 

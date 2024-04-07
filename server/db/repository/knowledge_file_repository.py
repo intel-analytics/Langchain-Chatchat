@@ -66,7 +66,7 @@ def add_docs_to_db(session,
     '''
     # ! 这里会出现doc_infos为None的情况，需要进一步排查
     if doc_infos is None:
-        print("输入的server.db.repository.knowledge_file_repository.add_docs_to_db的doc_infos参数为None")
+        print("The doc_infos parameter for server.db.repository.knowledge_file_repository.add_docs_to_db is None")
         return False
     for d in doc_infos:
         obj = FileDocModel(

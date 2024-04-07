@@ -62,7 +62,7 @@ class FangZhouWorker(ApiModelWorker):
                             "code": None,
                         }
                     }
-                    self.logger.error(f"请求方舟 API 时发生错误：{data}")
+                    self.logger.error(f"An error occurred when requesting the fangzhou API: {data}")
                     yield data
                 elif chunk := resp.choice.message.content:
                     text += chunk
@@ -70,7 +70,7 @@ class FangZhouWorker(ApiModelWorker):
             else:
                 data = {
                     "error_code": 500,
-                    "text": f"请求方舟 API 时发生未知的错误: {resp}"
+                    "text": f"An unknown error occurred when requesting the fangzhou API: {resp}"
                 }
                 self.logger.error(data)
                 yield data

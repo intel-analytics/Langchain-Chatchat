@@ -35,7 +35,7 @@ class ThreadSafeFaiss(ThreadSafeObject):
             if not os.path.isdir(path) and create_path:
                 os.makedirs(path)
             ret = self._obj.save_local(path)
-            logger.info(f"已将向量库 {self.key} 保存到磁盘")
+            logger.info(f"The vector library {self.key} has been saved to disk")
         return ret
 
     def clear(self):
@@ -45,7 +45,7 @@ class ThreadSafeFaiss(ThreadSafeObject):
             if ids:
                 ret = self._obj.delete(ids)
                 assert len(self._obj.docstore._dict) == 0
-            logger.info(f"已将向量库 {self.key} 清空")
+            logger.info(f"The vector library {self.key} has been cleared")
         return ret
 
 
@@ -69,7 +69,7 @@ class _FaissPool(CachePool):
     def unload_vector_store(self, kb_name: str):
         if cache := self.get(kb_name):
             self.pop(kb_name)
-            logger.info(f"成功释放向量库：{kb_name}")
+            logger.info(f"Successfully released the vector library: {kb_name}")
 
 
 class KBFaissPool(_FaissPool):
@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 docs = vs.similarity_search_with_score(f"{name}", k=3, score_threshold=1.0)
                 pprint(docs)
         if r == 3: # delete docs
-            logger.warning(f"清除 {vs_name} by {name}")
+            logger.warning(f"Clear {vs_name} by {name}")
             kb_faiss_pool.get(vs_name).clear()
 
     threads = []

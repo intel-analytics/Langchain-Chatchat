@@ -75,15 +75,15 @@ class MiniMaxWorker(ApiModelWorker):
                     if not e.startswith("data: "):
                         data = {
                                 "error_code": 500,
-                                "text": f"minimax返回错误的结果：{e}",
+                                "text": f"Minimax returned incorrect results: {e}",
                                 "error": {
-                                    "message":  f"minimax返回错误的结果：{e}",
+                                    "message":  f"Minimax returned incorrect results: {e}",
                                     "type": "invalid_request_error",
                                     "param": None,
                                     "code": None,
                                 }
                         }
-                        self.logger.error(f"请求 MiniMax API 时发生错误：{data}")
+                        self.logger.error(f"An error occurred when requesting the MiniMax API: {data}")
                         yield data
                         continue
 
@@ -136,7 +136,7 @@ class MiniMaxWorker(ApiModelWorker):
                                     "code": None,
                                 }
                             }
-                    self.logger.error(f"请求 MiniMax API 时发生错误：{data}")
+                    self.logger.error(f"An error occurred when requesting the MiniMax API: {data}")
                     return data
                 i += batch_size
             return {"code": 200, "data": result}

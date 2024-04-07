@@ -34,4 +34,4 @@ class SearchInternetInput(BaseModel):
 
 if __name__ == "__main__":
     result = search_internet("今天星期几")
-    print("Answer: ",result)
+    print("答案:",result)

@@ -98,7 +98,7 @@ def _save_files_in_thread(files: List[UploadFile],
                     and not override
                     and os.path.getsize(file_path) == len(file_content)
             ):
-                file_status = f"文件 {filename} 已存在。"
+                file_status = f"The file {filename} already exists."
                 logger.warn(file_status)
                 return dict(code=404, msg=file_status, data=data)
 
@@ -108,7 +108,7 @@ def _save_files_in_thread(files: List[UploadFile],
                 f.write(file_content)
             return dict(code=200, msg=f"成功上传文件 {filename}", data=data)
         except Exception as e:
-            msg = f"{filename} 文件上传失败，报错信息为: {e}"
+            msg = f"{filename} upload failed, the error message is: {e}"
             logger.error(f'{e.__class__.__name__}: {msg}',
                          exc_info=e if log_verbose else None)
             return dict(code=500, msg=msg, data=data)
@@ -208,7 +208,7 @@ def delete_docs(
                                     knowledge_base_name=knowledge_base_name)
             kb.delete_doc(kb_file, delete_content, not_refresh_vs_cache=True)
         except Exception as e:
-            msg = f"{file_name} 文件删除失败，错误信息：{e}"
+            msg = f"{file_name} deletion failed, error message: {e}"
             logger.error(f'{e.__class__.__name__}: {msg}',
                          exc_info=e if log_verbose else None)
             failed_files[file_name] = msg
@@ -268,7 +268,7 @@ def update_docs(
             try:
                 kb_files.append(KnowledgeFile(filename=file_name, knowledge_base_name=knowledge_base_name))
             except Exception as e:
-                msg = f"加载文档 {file_name} 时出错：{e}"
+                msg = f"An error occurred while loading the document {file_name}: {e}"
                 logger.error(f'{e.__class__.__name__}: {msg}',
                              exc_info=e if log_verbose else None)
                 failed_files[file_name] = msg
@@ -296,7 +296,7 @@ def update_docs(
             kb_file = KnowledgeFile(filename=file_name, knowledge_base_name=knowledge_base_name)
             kb.update_doc(kb_file, docs=v, not_refresh_vs_cache=True)
         except Exception as e:
-            msg = f"为 {file_name} 添加自定义docs时出错：{e}"
+            msg = f"An error occurred while adding custom docs for {file_name}: {e}"
             logger.error(f'{e.__class__.__name__}: {msg}',
                          exc_info=e if log_verbose else None)
             failed_files[file_name] = msg
@@ -339,7 +339,7 @@ def download_doc(
                 content_disposition_type=content_disposition_type,
             )
     except Exception as e:
-        msg = f"{kb_file.filename} 读取文件失败，错误信息是：{e}"
+        msg = f" Failed to read the file {kb_file.filename}, the error message is: {e}"
         logger.error(f'{e.__class__.__name__}: {msg}',
                      exc_info=e if log_verbose else None)
         return BaseResponse(code=500, msg=msg)
@@ -393,7 +393,7 @@ def recreate_vector_store(
                     kb.add_doc(kb_file, not_refresh_vs_cache=True)
                 else:
                     kb_name, file_name, error = result
-                    msg = f"添加文件‘{file_name}’到知识库‘{knowledge_base_name}’时出错：{error}。已跳过。"
+                    msg = f"An error occurred while adding the file ‘{file_name}’ to the knowledge base ‘{knowledge_base_name}’: {error}. Skipped."
                     logger.error(msg)
                     yield json.dumps({
                         "code": 500,

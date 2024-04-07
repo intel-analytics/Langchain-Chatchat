@@ -22,7 +22,7 @@ test_files = {
     "test_files/test.txt": get_file_path("samples", "test_files/test.txt"),
 }
 
-print("\n\n直接url访问\n")
+print("\n\nDirect URL access\n")
 
 
 def test_delete_kb_before(api="/knowledge_base/delete_knowledge_base"):
@@ -30,14 +30,14 @@ def test_delete_kb_before(api="/knowledge_base/delete_knowledge_base"):
         return
 
     url = api_base_url + api
-    print("\n测试知识库存在，需要删除")
+    print("\nTesting knowledge base existence, requires deletion")
     r = requests.post(url, json=kb)
     data = r.json()
     pprint(data)
 
     # check kb not exists anymore
     url = api_base_url + "/knowledge_base/list_knowledge_bases"
-    print("\n获取知识库列表：")
+    print("\nFetching the list of knowledge bases: ")
     r = requests.get(url)
     data = r.json()
     pprint(data)
@@ -49,21 +49,21 @@ def test_delete_kb_before(api="/knowledge_base/delete_knowledge_base"):
 def test_create_kb(api="/knowledge_base/create_knowledge_base"):
     url = api_base_url + api
 
-    print(f"\n尝试用空名称创建知识库：")
+    print(f"\nAttempting to create a knowledge base with an empty name: ")
     r = requests.post(url, json={"knowledge_base_name": " "})
     data = r.json()
     pprint(data)
     assert data["code"] == 404
     assert data["msg"] == "知识库名称不能为空，请重新填写知识库名称"
 
-    print(f"\n创建新知识库： {kb}")
+    print(f"\nCreating a new knowledge base: {kb}")
     r = requests.post(url, json={"knowledge_base_name": kb})
     data = r.json()
     pprint(data)
     assert data["code"] == 200
     assert data["msg"] == f"已新增知识库 {kb}"
 
-    print(f"\n尝试创建同名知识库： {kb}")
+    print(f"\nAttempting to create a knowledge base with the same name: {kb}")
     r = requests.post(url, json={"knowledge_base_name": kb})
     data = r.json()
     pprint(data)
@@ -73,7 +73,7 @@ def test_create_kb(api="/knowledge_base/create_knowledge_base"):
 
 def test_list_kbs(api="/knowledge_base/list_knowledge_bases"):
     url = api_base_url + api
-    print("\n获取知识库列表：")
+    print("\nFetching the list of knowledge bases: ")
     r = requests.get(url)
     data = r.json()
     pprint(data)
@@ -86,7 +86,7 @@ def test_upload_docs(api="/knowledge_base/upload_docs"):
     url = api_base_url + api
     files = [("files", (name, open(path, "rb"))) for name, path in test_files.items()]
 
-    print(f"\n上传知识文件")
+    print(f"\nUploading knowledge file")
     data = {"knowledge_base_name": kb, "override": True}
     r = requests.post(url, data=data, files=files)
     data = r.json()
@@ -94,7 +94,7 @@ def test_upload_docs(api="/knowledge_base/upload_docs"):
     assert data["code"] == 200
     assert len(data["data"]["failed_files"]) == 0
 
-    print(f"\n尝试重新上传知识文件， 不覆盖")
+    print(f"\nAttempting to re-upload knowledge file without overwriting")
     data = {"knowledge_base_name": kb, "override": False}
     files = [("files", (name, open(path, "rb"))) for name, path in test_files.items()]
     r = requests.post(url, data=data, files=files)
@@ -103,7 +103,7 @@ def test_upload_docs(api="/knowledge_base/upload_docs"):
     assert data["code"] == 200
     assert len(data["data"]["failed_files"]) == len(test_files)
 
-    print(f"\n尝试重新上传知识文件， 覆盖，自定义docs")
+    print(f"\nAttempting to re-upload knowledge file with overwriting and customize docs")
     docs = {"FAQ.MD": [{"page_content": "custom docs", "metadata": {}}]}
     data = {"knowledge_base_name": kb, "override": True, "docs": json.dumps(docs)}
     files = [("files", (name, open(path, "rb"))) for name, path in test_files.items()]
@@ -116,7 +116,7 @@ def test_upload_docs(api="/knowledge_base/upload_docs"):
 
 def test_list_files(api="/knowledge_base/list_files"):
     url = api_base_url + api
-    print("\n获取知识库中文件列表：")
+    print("\nFetching the list of files in the knowledge base: ")
     r = requests.get(url, params={"knowledge_base_name": kb})
     data = r.json()
     pprint(data)
@@ -129,7 +129,7 @@ def test_list_files(api="/knowledge_base/list_files"):
 def test_search_docs(api="/knowledge_base/search_docs"):
     url = api_base_url + api
     query = "介绍一下langchain-chatchat项目"
-    print("\n检索知识库：")
+    print("\nRetrieving from the knowledge base: ")
     print(query)
     r = requests.post(url, json={"knowledge_base_name": kb, "query": query})
     data = r.json()
@@ -139,7 +139,7 @@ def test_search_docs(api="/knowledge_base/search_docs"):
 
 def test_update_info(api="/knowledge_base/update_info"):
     url = api_base_url + api
-    print("\n更新知识库介绍")
+    print("\nUpdating knowledge base description")
     r = requests.post(url, json={"knowledge_base_name": "samples", "kb_info": "你好"})
     data = r.json()
     pprint(data)
@@ -148,7 +148,7 @@ def test_update_info(api="/knowledge_base/update_info"):
 def test_update_docs(api="/knowledge_base/update_docs"):
     url = api_base_url + api
 
-    print(f"\n更新知识文件")
+    print(f"\nUpdating knowledge file")
     r = requests.post(url, json={"knowledge_base_name": kb, "file_names": list(test_files)})
     data = r.json()
     pprint(data)
@@ -159,7 +159,7 @@ def test_update_docs(api="/knowledge_base/update_docs"):
 def test_delete_docs(api="/knowledge_base/delete_docs"):
     url = api_base_url + api
 
-    print(f"\n删除知识文件")
+    print(f"\nDeleting knowledge file")
     r = requests.post(url, json={"knowledge_base_name": kb, "file_names": list(test_files)})
     data = r.json()
     pprint(data)
@@ -168,7 +168,7 @@ def test_delete_docs(api="/knowledge_base/delete_docs"):
 
     url = api_base_url + "/knowledge_base/search_docs"
     query = "介绍一下langchain-chatchat项目"
-    print("\n尝试检索删除后的检索知识库：")
+    print("\nAttempting to retrieve from the knowledge base after deletion: ")
     print(query)
     r = requests.post(url, json={"knowledge_base_name": kb, "query": query})
     data = r.json()
@@ -178,7 +178,7 @@ def test_delete_docs(api="/knowledge_base/delete_docs"):
 
 def test_recreate_vs(api="/knowledge_base/recreate_vector_store"):
     url = api_base_url + api
-    print("\n重建知识库：")
+    print("\nRebuilding the knowledge base: ")
     r = requests.post(url, json={"knowledge_base_name": kb}, stream=True)
     for chunk in r.iter_content(None):
         data = json.loads(chunk[6:])
@@ -188,7 +188,7 @@ def test_recreate_vs(api="/knowledge_base/recreate_vector_store"):
 
     url = api_base_url + "/knowledge_base/search_docs"
     query = "本项目支持哪些文件格式?"
-    print("\n尝试检索重建后的检索知识库：")
+    print("\nAttempting to retrieve from the rebuilt knowledge base: ")
     print(query)
     r = requests.post(url, json={"knowledge_base_name": kb, "query": query})
     data = r.json()
@@ -198,14 +198,14 @@ def test_recreate_vs(api="/knowledge_base/recreate_vector_store"):
 
 def test_delete_kb_after(api="/knowledge_base/delete_knowledge_base"):
     url = api_base_url + api
-    print("\n删除知识库")
+    print("\nDeleting knowledge base")
     r = requests.post(url, json=kb)
     data = r.json()
     pprint(data)
 
     # check kb not exists anymore
     url = api_base_url + "/knowledge_base/list_knowledge_bases"
-    print("\n获取知识库列表：")
+    print("\nFetching the list of knowledge bases: ")
     r = requests.get(url)
     data = r.json()
     pprint(data)

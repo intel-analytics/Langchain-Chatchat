@@ -84,7 +84,7 @@ class BaiChuanWorker(ApiModelWorker):
                                 "code": None,
                             }
                         }
-                        self.logger.error(f"请求百川 API 时发生错误：{data}")
+                        self.logger.error(f"An error occurred when requesting the baichuan API: {data}")
                         yield data
 
     def get_embeddings(self, params):

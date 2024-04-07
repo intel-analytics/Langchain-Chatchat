@@ -64,7 +64,7 @@ class AzureWorker(ApiModelWorker):
                                 }
                         print(text)
                     else:
-                        self.logger.error(f"请求 Azure API 时发生错误：{resp}")
+                        self.logger.error(f"An error occurred when requesting the Azure API: {resp}")
 
     def get_embeddings(self, params):
         print("embedding")

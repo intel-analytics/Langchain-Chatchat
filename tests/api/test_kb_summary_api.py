@@ -20,7 +20,7 @@ doc_ids = [
 
 def test_summary_file_to_vector_store(api="/knowledge_base/kb_summary_api/summary_file_to_vector_store"):
     url = api_base_url + api
-    print("\n文件摘要：")
+    print("\nFile summary: ")
     r = requests.post(url, json={"knowledge_base_name": kb,
                                  "file_name": file_name
                                  }, stream=True)
@@ -33,7 +33,7 @@ def test_summary_file_to_vector_store(api="/knowledge_base/kb_summary_api/summar
 
 def test_summary_doc_ids_to_vector_store(api="/knowledge_base/kb_summary_api/summary_doc_ids_to_vector_store"):
     url = api_base_url + api
-    print("\n文件摘要：")
+    print("\nFile summary: ")
     r = requests.post(url, json={"knowledge_base_name": kb,
                                  "doc_ids": doc_ids
                                  }, stream=True)

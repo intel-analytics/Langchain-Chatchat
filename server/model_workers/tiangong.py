@@ -66,7 +66,7 @@ class TianGongWorker(ApiModelWorker):
                         "error_code": resp["code"],
                         "text": resp["code_msg"]
                     }
-                    self.logger.error(f"请求天工 API 时出错：{data}")
+                    self.logger.error(f"An error occurred when requesting the tiangong API: {data}")
                     yield data
 
     def get_embeddings(self, params):

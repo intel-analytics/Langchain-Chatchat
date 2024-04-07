@@ -22,29 +22,29 @@ def update_version_number(latest_tag, increment):
     return new_version
 
 def main():
-    print("当前最近的Git标签：")
+    print("The most recent Git tag: ")
     latest_tag = get_latest_tag()
     print(latest_tag)
 
-    print("请选择要递增的版本号部分（X, Y, Z）：")
+    print("Please select the version number part to increment (X, Y, Z): ")
     increment = input().upper()
 
     while increment not in ['X', 'Y', 'Z']:
-        print("输入错误，请输入X, Y或Z：")
+        print("Input error, please enter X, Y, or Z: ")
         increment = input().upper()
 
     new_version = update_version_number(latest_tag, increment)
-    print(f"新的版本号为：{new_version}")
+    print(f"The new version number is: {new_version}")
 
-    print("确认更新版本号并推送到远程仓库？（y/n）")
+    print("Confirm to update the version number and push to the remote repository? (y/n)")
     confirmation = input().lower()
 
     if confirmation == 'y':
         subprocess.run(['git', 'tag', new_version])
         subprocess.run(['git', 'push', 'origin', new_version])
-        print("新版本号已创建并推送到远程仓库。")
+        print("The new version number has been created and pushed to the remote repository.")
     else:
-        print("操作已取消。")
+        print("Operation has been canceled.")
 
 if __name__ == '__main__':
     main()

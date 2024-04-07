@@ -56,7 +56,7 @@ def test_embeddings(worker):
             assert isinstance(embeddings, list) and len(embeddings) > 0
             assert isinstance(embeddings[0], list) and len(embeddings[0]) > 0
             assert isinstance(embeddings[0][0], float)
-            print("向量长度：", len(embeddings[0]))
+            print("embedding length: ", len(embeddings[0]))
 
 
 # @pytest.mark.parametrize("worker", workers)

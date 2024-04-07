@@ -65,7 +65,7 @@ def import_from_db(
         con.close()
         return True
     except Exception as e:
-        print(f"无法读取备份数据库：{sqlite_path}。错误信息：{e}")
+        print(f"Unable to read the backup database: {sqlite_path}. Error message: {e}")
         return False
 
 
@@ -76,7 +76,7 @@ def file_to_kbfile(kb_name: str, files: List[str]) -> List[KnowledgeFile]:
             kb_file = KnowledgeFile(filename=file, knowledge_base_name=kb_name)
             kb_files.append(kb_file)
         except Exception as e:
-            msg = f"{e}，已跳过"
+            msg = f"{e}, skipped"
             logger.error(f'{e.__class__.__name__}: {msg}',
                          exc_info=e if log_verbose else None)
     return kb_files

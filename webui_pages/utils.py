@@ -142,22 +142,22 @@ class ApiRequest:
                                     data = json.loads(chunk)
                                 yield data
                             except Exception as e:
-                                msg = f"接口返回json错误： ‘{chunk}’。错误信息是：{e}。"
+                                msg = f"The interface returns a JSON error: '{chunk}'. The error message is: {e}."
                                 logger.error(f'{e.__class__.__name__}: {msg}',
                                              exc_info=e if log_verbose else None)
                         else:
                             # print(chunk, end="", flush=True)
                             yield chunk
             except httpx.ConnectError as e:
-                msg = f"无法连接API服务器，请确认 ‘api.py’ 已正常启动。({e})"
+                msg = f"Unable to connect to the API server, please confirm that 'api.py' has started normally. ({e})"
                 logger.error(msg)
                 yield {"code": 500, "msg": msg}
             except httpx.ReadTimeout as e:
-                msg = f"API通信超时，请确认已启动FastChat与API服务（详见Wiki '5. 启动 API 服务或 Web UI'）。（{e}）"
+                msg = f"API communication timeout, please confirm that FastChat and the API service have been started (see Wiki '5. 启动 API 服务或 Web UI' for details). （{e}）"
                 logger.error(msg)
                 yield {"code": 500, "msg": msg}
             except Exception as e:
-                msg = f"API通信遇到错误：{e}"
+                msg = f"API communication encountered an error: {e}"
                 logger.error(f'{e.__class__.__name__}: {msg}',
                              exc_info=e if log_verbose else None)
                 yield {"code": 500, "msg": msg}
@@ -178,22 +178,22 @@ class ApiRequest:
                                     data = json.loads(chunk)
                                 yield data
                             except Exception as e:
-                                msg = f"接口返回json错误： ‘{chunk}’。错误信息是：{e}。"
+                                msg = f"The interface returns a JSON error: '{chunk}'. The error message is: {e}."
                                 logger.error(f'{e.__class__.__name__}: {msg}',
                                              exc_info=e if log_verbose else None)
                         else:
                             # print(chunk, end="", flush=True)
                             yield chunk
             except httpx.ConnectError as e:
-                msg = f"无法连接API服务器，请确认 ‘api.py’ 已正常启动。({e})"
+                msg = f"Unable to connect to the API server, please confirm that 'api.py' has started normally. ({e})"
                 logger.error(msg)
                 yield {"code": 500, "msg": msg}
             except httpx.ReadTimeout as e:
-                msg = f"API通信超时，请确认已启动FastChat与API服务（详见Wiki '5. 启动 API 服务或 Web UI'）。（{e}）"
+                msg = f"API communication timeout, please confirm that FastChat and the API service have been started (see Wiki '5. 启动 API 服务或 Web UI'- for details). （{e}）"
                 logger.error(msg)
                 yield {"code": 500, "msg": msg}
             except Exception as e:
-                msg = f"API通信遇到错误：{e}"
+                msg = f"API communication encountered an error: {e}"
                 logger.error(f'{e.__class__.__name__}: {msg}',
                              exc_info=e if log_verbose else None)
                 yield {"code": 500, "msg": msg}
@@ -219,7 +219,7 @@ class ApiRequest:
             try:
                 return r.json()
             except Exception as e:
-                msg = "API未能返回正确的JSON。" + str(e)
+                msg = "The API failed to return the correct JSON. " + str(e)
                 if log_verbose:
                     logger.error(f'{e.__class__.__name__}: {msg}',
                                  exc_info=e if log_verbose else None)

@@ -90,12 +90,12 @@ FSCHAT_MODEL_WORKERS = {
         # 'disable_log_requests': False
 
     },
-    "chatglm3-6b": {
-        "device": "xpu",
-    },
-    "Llama-2-7b-chat-hf": {
-        "device": "xpu",
-    },
+    # "chatglm3-6b": {
+    #     "device": "cpu",
+    # },
+    # "Llama-2-7b-chat-hf": {
+    #     "device": "cpu",
+    # },
     # 以下配置可以不用修改，在model_config中设置启动的模型
     "zhipu-api": {
         "port": 21001,

@@ -147,7 +147,7 @@ class EmbeddingsPool(CachePool):
                         from ipex_llm.langchain.embeddings import TransformersBgeEmbeddings
                         low_bit_format = "fp16"
                         if device == 'cpu':
-                            low_bit_format = "float32"
+                            low_bit_format = "bf16"
                         # TODO: try others
                         embeddings = TransformersBgeEmbeddings.from_model_id(model_id=get_model_path(model),
                                                                              model_kwargs={'load_in_low_bit':low_bit_format},

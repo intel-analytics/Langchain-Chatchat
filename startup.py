@@ -10,7 +10,7 @@ from langchain_core._api import deprecated
 from configs.model_config import LLM_DEVICE
 
 if LLM_DEVICE=="xpu":
-    import intel_extension_for_pytorch
+    import intel_extension_for_pytorch as ipex
 
 try:
     import numexpr

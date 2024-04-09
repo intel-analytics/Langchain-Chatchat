@@ -143,10 +143,14 @@ class EmbeddingsPool(CachePool):
                     else:
                         # maybe ReRanker or else, just use empty string instead
                         query_instruction = ""
-                    if device in ['xpu']:
+                    if device in ['xpu', 'cpu']:
                         from ipex_llm.langchain.embeddings import TransformersBgeEmbeddings
+                        low_bit_format = "fp16"
+                        if device == 'cpu':
+                            low_bit_format = "float32"
+                        # TODO: try others
                         embeddings = TransformersBgeEmbeddings.from_model_id(model_id=get_model_path(model),
-                                                                             model_kwargs={'load_in_low_bit':"fp16"},
+                                                                             model_kwargs={'load_in_low_bit':low_bit_format},
                                                                              device_map=device)
                     else:
                         from langchain.embeddings import HuggingFaceBgeEmbeddings

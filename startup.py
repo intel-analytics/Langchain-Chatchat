@@ -8,7 +8,7 @@ from datetime import datetime
 from pprint import pprint
 from langchain_core._api import deprecated
 
-import intel_extension_for_pytorch as ipex
+# import intel_extension_for_pytorch as ipex
 
 try:
     import numexpr
@@ -174,7 +174,7 @@ def create_model_worker_app(log_level: str = "INFO", **kwargs) -> FastAPI:
 
         else:
             from fastchat.serve.model_worker import GptqConfig, AWQConfig, worker_id
-            if args.device in ['xpu']:
+            if args.device in ['xpu', 'cpu']:
                 from ipex_llm.serving.fastchat.ipex_llm_worker import app, BigDLLLMWorker
             else:
                 from fastchat.serve.model_worker import app, ModelWorker
@@ -220,7 +220,8 @@ def create_model_worker_app(log_level: str = "INFO", **kwargs) -> FastAPI:
                 groupsize=args.awq_groupsize,
             )
 
-            if args.device in ['xpu']:
+            if args.device in ['xpu', 'cpu']:
+                print(f"#############################args.device is {args.device}")
                 worker = BigDLLLMWorker(
                     controller_addr=args.controller_address,
                     worker_addr=args.worker_address,

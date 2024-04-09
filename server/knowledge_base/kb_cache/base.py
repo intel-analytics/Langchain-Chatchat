@@ -145,8 +145,9 @@ class EmbeddingsPool(CachePool):
                         query_instruction = ""
                     if device in ['xpu', 'cpu']:
                         from ipex_llm.langchain.embeddings import TransformersBgeEmbeddings
-                        low_bit_format = "fp16"
-                        if device == 'cpu':
+                        if device == 'xpu':
+                            low_bit_format = "fp16"
+                        elif device == 'cpu':
                             low_bit_format = "bf16"
                         # TODO: try others
                         embeddings = TransformersBgeEmbeddings.from_model_id(model_id=get_model_path(model),

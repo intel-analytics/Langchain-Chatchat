@@ -7,9 +7,9 @@ from multiprocessing import Process
 from datetime import datetime
 from pprint import pprint
 from langchain_core._api import deprecated
-from configs.model_config import LLM_DEVICE
+from configs.model_config import LLM_DEVICE, EMBEDDING_DEVICE
 
-if LLM_DEVICE=="xpu":
+if LLM_DEVICE=="xpu" or EMBEDDING_DEVICE == "xpu":
     import intel_extension_for_pytorch as ipex
 
 try:

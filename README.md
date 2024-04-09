@@ -43,7 +43,7 @@ See the Langchain-Chatchat architecture below ([source](https://github.com/chatc
  Follow the guide that corresponds to your specific system and GPU type from the links provided below:
 
 - For systems with Intel Core Ultra integrated GPU: [Windows Guide](./INSTALL_win_mtl.md)
-- For systems with Intel Arc A-Series GPU: [Windows Guide](./INSTALL_windows_arc.md) | [Linux Guide](./INSTALL_linux_arc.md)
+- For systems with Intel Arc A-Series GPU: [Windows Guide](./INSTALL_win_arc.md) | [Linux Guide](./INSTALL_linux_arc.md)
 - For systems with Intel Data Center Max Series GPU: [Linux Guide](./INSTALL_linux_max.md)
 
 

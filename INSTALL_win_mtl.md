@@ -23,9 +23,6 @@ conda create -n ipex-llm-langchain-chatchat python=3.11 libuv
 conda activate ipex-llm-langchain-chatchat
 ```
 
-> [!NOTE]
-> When creating the conda environment we used python 3.11, which is different from the default recommended python version 3.9 in [Install IPEX-LLM on Windows with Intel GPU](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html)
-
 #### 2. Install Intel oneAPI Base Toolkit 2024.0
 ```cmd
 pip install dpcpp-cpp-rt==2024.0.2 mkl-dpcpp==2024.0.0 onednn==2024.0.0
@@ -36,14 +33,15 @@ pip install dpcpp-cpp-rt==2024.0.2 mkl-dpcpp==2024.0.0 onednn==2024.0.0
 pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
 pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
 ```
+
 #### 4. Install Langchain-Chatchat Dependencies 
-Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**).
-  ```cmd
-  cd C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm
-  pip install -r requirements_ipex_llm.txt 
-  pip install -r requirements_api_ipex_llm.txt
-  pip install -r requirements_webui.txt
-  ```
+Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**.
+```cmd
+cd C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm
+pip install -r requirements_ipex_llm.txt 
+pip install -r requirements_api_ipex_llm.txt
+pip install -r requirements_webui.txt
+```
 
 ### Configuration
 -  In root directory of Langchain-Chatchat, run the following command to create a config:

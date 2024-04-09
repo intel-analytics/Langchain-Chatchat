@@ -17,27 +17,25 @@ Visit the [Install IPEX-LLM on Linux with Intel GPU Guide](https://ipex-llm.read
 
 #### 1. Create a Conda Environment
 Run the following commands to create a new python environment:
-  ```bash
-  conda create -n ipex-llm-langchain-chatchat python=3.11
-  conda activate ipex-llm-langchain-chatchat
-  ```
-
-  > [!NOTE]
-  > When creating the conda environment we used python 3.11, which is different from the default recommended python version 3.9 in [Install IPEX-LLM on Linux with Intel GPU Guide](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_linux_gpu.html)
+```bash
+conda create -n ipex-llm-langchain-chatchat python=3.11
+conda activate ipex-llm-langchain-chatchat
+```
 
 #### 2.  Install `ipex-llm` 
-  ```bash
-  pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
-  pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
-  ```
+```bash
+pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
+pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
+```
+
 #### 3. Install Langchain-Chatchat Dependencies 
-Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `/home/arda/Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**).
-  ```bash
-  cd /home/arda/Langchain-Chatchat-ipex-llm
-  pip install -r requirements_ipex_llm.txt 
-  pip install -r requirements_api_ipex_llm.txt
-  pip install -r requirements_webui.txt
-  ```
+Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `/home/arda/Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**.
+```bash
+cd /home/arda/Langchain-Chatchat-ipex-llm
+pip install -r requirements_ipex_llm.txt 
+pip install -r requirements_api_ipex_llm.txt
+pip install -r requirements_webui.txt
+```
 
 ### Configuration
 -  In root directory of Langchain-Chatchat, run the following command to create a config:

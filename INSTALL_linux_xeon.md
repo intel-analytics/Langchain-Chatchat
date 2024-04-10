@@ -11,7 +11,7 @@ Download the Langchain-Chatchat with IPEX-LLM integrations from [this link](http
 
 ### Install Prerequisites
 
-We recommend to use Conda to manage the running environment. For how to install Conda on your Linux distributions, please visit [here](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html)
+We recommend to use Conda to manage the running environment. For how to install Conda on your Linux distributions, please visit [here](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
 ### Install Python Dependencies
 

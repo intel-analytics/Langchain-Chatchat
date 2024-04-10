@@ -35,6 +35,9 @@ cd /home/arda/Langchain-Chatchat-ipex-llm
 pip install -r requirements_ipex_llm.txt 
 pip install -r requirements_api_ipex_llm.txt
 pip install -r requirements_webui.txt
+# Due to an known issue, run with Llama-2 model
+# will require to install transformers==4.34.0 to generate the correct result.
+pip install transformers==4.34.0
 ```
 
 ### Configuration

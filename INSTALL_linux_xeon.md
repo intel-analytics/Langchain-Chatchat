@@ -35,7 +35,7 @@ cd /home/arda/Langchain-Chatchat-ipex-llm
 pip install -r requirements_ipex_llm.txt 
 pip install -r requirements_api_ipex_llm.txt
 pip install -r requirements_webui.txt
-# Due to an known issue, run with Llama-2 model
+# Due to an known issue on CPU, run with Llama-2 model
 # will require to install transformers==4.34.0 to generate the correct result.
 pip install transformers==4.34.0
 ```
@@ -67,7 +67,6 @@ Run the following commands:
 conda activate ipex-llm-langchain-chatchat
 
 source ipex-llm-init -t
-source /opt/intel/oneapi/setvars.sh
 
 export no_proxy='localhost,127.0.0.1'
 
@@ -76,7 +75,7 @@ export no_proxy='localhost,127.0.0.1'
 numactl -C 0-47 -m 0 python startup.py -a
 ```
 >[!Note]
-> The above configurations lead to optimal performance for **Intel(R) Xeon(R) Platinum 8468**. For other types of Xeon, you may need to change the settings accordingly based on numa settings. 
+> The above configurations lead to optimal performance for **Intel(R) Xeon(R) Platinum 8468**.
 
 You can find the Web UI's URL printted on the terminal logs, e.g. http://localhost:8501/.
 

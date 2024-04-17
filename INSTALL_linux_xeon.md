@@ -75,7 +75,7 @@ export no_proxy='localhost,127.0.0.1'
 numactl -C 0-47 -m 0 python startup.py -a
 ```
 >[!Note]
-> The above configurations lead to optimal performance for **Intel(R) Xeon(R) Platinum 8468**.
+> The above numa configuration lead to optimal performance for **Intel(R) Xeon(R) Platinum 8468**.
 
 You can find the Web UI's URL printted on the terminal logs, e.g. http://localhost:8501/.
 

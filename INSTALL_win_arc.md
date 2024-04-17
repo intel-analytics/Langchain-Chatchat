@@ -67,8 +67,6 @@ In **Anaconda Prompt (miniconda3)**, under the root directory of Langchain-Chatc
 ```cmd
 conda activate ipex-llm-langchain-chatchat
 
-set USE_XETLA=OFF
-set SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1
 set SYCL_CACHE_PERSISTENT=1
 set BIGDL_QUANTIZE_KV_CACHE=1
 set BIGDL_LLM_XMX_DISABLED=1

@@ -1,9 +1,9 @@
-***This application (Knowledge Base QA using RAG pipeline) is ported from [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) to run on Intel GPU (e.g., local PC with iGPU, discrete GPU such as Arc, Flex and Max) using [IPEX-LLM](https://github.com/intel-analytics/ipex-llm).***
+***This application (Knowledge Base QA using RAG pipeline) is ported from [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) to run on Intel CPU and GPU (e.g., local PC with iGPU, discrete GPU such as Arc, Flex and Max) using [IPEX-LLM](https://github.com/intel-analytics/ipex-llm).***
 
-# Langchain-Chatchat with IPEX-LLM Acceleration on Intel GPUs
+# Langchain-Chatchat with IPEX-LLM Acceleration on Intel CPU and GPU
 
-See the demo of running `Langchain-Chatchat` (Knowledge Base QA using RAG pipeline) on Intel Core Ultra using `ipex-llm` below. If you have any issues or suggestions, please submit them to the [IPEX-LLM Project](https://github.com/intel-analytics/ipex-llm/issues).
->You can change the UI language in the left-side menu. We currently support **English** and **简体中文** (see video demos below). 
+See the demo of running `Langchain-Chatchat` (Knowledge Base QA using RAG pipeline) on Intel Core Ultra laptop using `ipex-llm` below. If you have any issues or suggestions, please submit them to the [IPEX-LLM Project](https://github.com/intel-analytics/ipex-llm/issues).
+> You can change the UI language in the left-side menu. We currently support **English** and **简体中文** (see video demos below). 
 
 <br/>
 
@@ -24,7 +24,7 @@ See the demo of running `Langchain-Chatchat` (Knowledge Base QA using RAG pipeli
 
 <br/>
 
-The following sections introduce how to install and run Langchain-chatchat on systems equipped with Intel GPUs, utilizing the GPU to run both LLMs and embedding models. 
+The following sections introduce how to install and run Langchain-chatchat on systems equipped with Intel CPUs or GPUs, utilizing the CPU/GPU to run both LLMs and embedding models. 
 
 ## Table of Contents
 1. [LangChain-Chatchat Architecture](#langchain-chatchat-architecture)
@@ -40,11 +40,12 @@ See the Langchain-Chatchat architecture below ([source](https://github.com/chatc
   
 ## Install and Run
 
- Follow the guide that corresponds to your specific system and GPU type from the links provided below:
+Follow the guide that corresponds to your specific system and device type from the links provided below:
 
 - For systems with Intel Core Ultra integrated GPU: [Windows Guide](./INSTALL_win_mtl.md)
 - For systems with Intel Arc A-Series GPU: [Windows Guide](./INSTALL_win_arc.md) | [Linux Guide](./INSTALL_linux_arc.md)
 - For systems with Intel Data Center Max Series GPU: [Linux Guide](./INSTALL_linux_max.md)
+- For systems with Xeon-Series CPU: [Linux Guide](./INSTALL_linux_xeon.md)
 
 
 ## Usage

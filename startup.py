@@ -1,3 +1,10 @@
+# temporarily patch `get_prompt` for chatglm3 prompt
+# link: https://github.com/lm-sys/FastChat/pull/3272
+from ipex_llm.serving.fastchat.patch_fastchat import patch_get_prompt
+from fastchat.conversation import Conversation
+
+setattr(Conversation, "get_prompt", patch_get_prompt)
+
 import asyncio
 import multiprocessing as mp
 import os

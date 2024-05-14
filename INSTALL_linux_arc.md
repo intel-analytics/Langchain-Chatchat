@@ -23,7 +23,7 @@ conda activate ipex-llm-langchain-chatchat
 ```
 
 #### 2.  Install `ipex-llm` 
-```cmd
+```bash
 pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 pip install --pre --upgrade torchaudio==2.1.0a0  --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 ```

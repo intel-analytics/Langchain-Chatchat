@@ -11,8 +11,7 @@ Download the Langchain-Chatchat with IPEX-LLM integrations from [this link](http
 
 ### Install Prerequisites
 
-Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html), and follow **Install Prerequisites** to [update GPU driver](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#optional-update-gpu-driver) (optional), and install [Conda](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-miniconda).  
-
+Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html), and follow [**Install Prerequisites**](http://localhost:8000/doc/LLM/Quickstart/install_windows_gpu.html#install-prerequisites) to update GPU driver (optional), and install Conda.
 ### Install Python Dependencies
 
 #### 1. Create a Conda Environment

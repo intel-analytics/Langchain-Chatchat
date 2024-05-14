@@ -11,7 +11,7 @@ Download the Langchain-Chatchat with IPEX-LLM integrations from [this link](http
 
 ### Install Prerequisites
 
-Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html), and follow [**Install Prerequisites**](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-prerequisites) to install [Visual Studio](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-visual-studio-2022), [GPU driver](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-gpu-driver), and [Conda](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-miniconda).  
+Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html), and follow **Install Prerequisites** to [update GPU driver](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#optional-update-gpu-driver) (optional), and install [Conda](https://ipex-llm.readthedocs.io/en/latest/doc/LLM/Quickstart/install_windows_gpu.html#install-miniconda).  
 
 ### Install Python Dependencies
 
@@ -22,18 +22,16 @@ conda create -n ipex-llm-langchain-chatchat python=3.11 libuv
 conda activate ipex-llm-langchain-chatchat
 ```
 
-#### 2. Install Intel oneAPI Base Toolkit 2024.0
+#### 2. Install `ipex-llm` 
 ```cmd
-pip install dpcpp-cpp-rt==2024.0.2 mkl-dpcpp==2024.0.0 onednn==2024.0.0
+pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+pip install --pre --upgrade torchaudio==2.1.0a0  --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 ```
 
-#### 3.  Install `ipex-llm` 
-```cmd
-pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
-pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
-```
+> [!Note]
+> You can also use `--extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/cn/`.
 
-#### 4. Install Langchain-Chatchat Dependencies 
+#### 3. Install Langchain-Chatchat Dependencies 
 Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**.
 ```cmd
 cd C:\Users\arda\Downloads\Langchain-Chatchat-ipex-llm

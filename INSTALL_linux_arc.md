@@ -23,10 +23,13 @@ conda activate ipex-llm-langchain-chatchat
 ```
 
 #### 2.  Install `ipex-llm` 
-```bash
-pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
-pip install --pre --upgrade torchaudio==2.1.0a0  -f https://developer.intel.com/ipex-whl-stable-xpu
+```cmd
+pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+pip install --pre --upgrade torchaudio==2.1.0a0  --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 ```
+
+> [!Note]
+> You can also use `--extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/cn/`.
 
 #### 3. Install Langchain-Chatchat Dependencies 
 Switch to the root directory of Langchain-Chatchat you've downloaded (refer to the [download section](#download-langchain-chatchat)), and install the dependencies with the commands below. **Note: In the example commands we assume the root directory is `/home/arda/Langchain-Chatchat-ipex-llm`. Remember to change it to your own path**.

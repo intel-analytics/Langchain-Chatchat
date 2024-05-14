@@ -80,9 +80,13 @@ For more information about how to use Langchain-Chatchat, refer to Official Quic
 
 #### 1. Version Compatibility
 
-Ensure that you have installed `ipex-llm>=2.1.0b20240327`. To upgrade `ipex-llm`, use
+Ensure that you have installed `ipex-llm>=2.1.0b20240514`. To upgrade `ipex-llm`, use
 ```bash
-pip install --pre --upgrade ipex-llm[xpu] -f https://developer.intel.com/ipex-whl-stable-xpu
+pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+```
+or
+```bash
+pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/cn/
 ```
 
 #### 2. Prompt Templates

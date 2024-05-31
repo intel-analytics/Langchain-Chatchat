@@ -15,7 +15,7 @@ Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.re
 ### Install Python Dependencies
 
 #### 1. Create a Conda Environment
-Open **Anaconda Prompt (miniconda3)**, and run the following commands to create a new python environment:
+Open **Miniforge Prompt**, and run the following commands to create a new python environment:
 ```cmd
 conda create -n ipex-llm-langchain-chatchat python=3.11 libuv 
 conda activate ipex-llm-langchain-chatchat
@@ -60,7 +60,7 @@ Currently, we support only the LLM/embedding models specified in the table below
 |`BAAI/bge-large-en-v1.5`| English Embedding|[HF](https://huggingface.co/BAAI/bge-large-en-v1.5) |
 
 ## Start the Service
-In **Anaconda Prompt (miniconda3)**, under the root directory of Langchain-Chatchat, run the following commands:
+In **Miniforge Prompt**, under the root directory of Langchain-Chatchat, run the following commands:
 ```cmd
 conda activate ipex-llm-langchain-chatchat
 

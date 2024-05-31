@@ -17,7 +17,7 @@ Visit the [Install IPEX-LLM on Windows with Intel GPU Guide](https://ipex-llm.re
 ### Install Python Dependencies
 
 #### 1. Create a Conda Environment
-Open **Anaconda Prompt (miniconda3)**, and run the following commands to create a new python environment:
+Open **Miniforge Prompt**, and run the following commands to create a new python environment:
 ```cmd
 conda create -n ipex-llm-langchain-chatchat python=3.11 libuv 
 conda activate ipex-llm-langchain-chatchat
@@ -64,7 +64,7 @@ Currently, we support only the LLM/embedding models specified in the table below
 ## One-time Warm-up
 When you run this applcation on Intel GPU for the first time, it is highly recommended to do a one-time warmup (for GPU kernels compilation). 
 
-In **Anaconda Prompt (miniconda3)**, under the root directory of Langchain-Chatchat, with conda environment activated, run the following commands:
+In **Miniforge Prompt**, under the root directory of Langchain-Chatchat, with conda environment activated, run the following commands:
 
 ```cmd
 conda activate ipex-llm-langchain-chatchat
@@ -79,7 +79,7 @@ python warmup.py
 > The warmup may take several minutes. You just have to run it one-time on after installation. 
 
 ## Start the Service
-Open **Anaconda Prompt (miniconda3)** and run the following commands:
+Open **Miniforge Prompt** and run the following commands:
 ```cmd
 conda activate ipex-llm-langchain-chatchat
 

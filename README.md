@@ -42,7 +42,7 @@ See the Langchain-Chatchat architecture below ([source](https://github.com/chatc
 
 Follow the guide that corresponds to your specific system and device type from the links provided below:
 
-- For systems with Intel Core Ultra integrated GPU: [Windows Guide](./INSTALL_win_mtl.md)
+- For systems with Intel Core Ultra integrated GPU: [Windows Guide](./INSTALL_win_mtl.md) | [Linux Guide](./INSTALL_linux_mtl.md)
 - For systems with Intel Arc A-Series GPU: [Windows Guide](./INSTALL_win_arc.md) | [Linux Guide](./INSTALL_linux_arc.md)
 - For systems with Intel Data Center Max Series GPU: [Linux Guide](./INSTALL_linux_max.md)
 - For systems with Xeon-Series CPU: [Linux Guide](./INSTALL_linux_xeon.md)
@@ -80,7 +80,7 @@ For more information about how to use Langchain-Chatchat, refer to Official Quic
 
 #### 1. Version Compatibility
 
-Ensure that you have installed `ipex-llm>=2.1.0b20240514`. To upgrade `ipex-llm`, use
+Ensure that you have installed `ipex-llm>=2.1.0b20240612`. To upgrade `ipex-llm`, use
 ```bash
 pip install --pre --upgrade ipex-llm[xpu] --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 ```

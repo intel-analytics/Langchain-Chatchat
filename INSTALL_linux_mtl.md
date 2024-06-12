@@ -1,4 +1,4 @@
-# Setup Guide for Linux with Intel Arc A-Series GPU
+# Setup Guide for Linux with Intel Core Ultra integrated GPU (MTL)
 
 1. [Installation](#installation)
 2. [Start the Service](#start-the-service)

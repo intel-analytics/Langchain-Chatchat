@@ -24,8 +24,8 @@ conda activate ipex-llm-langchain-chatchat
 
 #### 2.  Install `ipex-llm` 
 ```bash
-pip install --pre --upgrade ipex-llm[all]
-pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
+pip install --pre --upgrade ipex-llm[all] --extra-index-url https://download.pytorch.org/whl/cpu
+pip3 install torchvision==0.16.2+cpu torchaudio==2.1.2+cpu --index-url https://download.pytorch.org/whl/cpu
 ```
 
 #### 3. Install Langchain-Chatchat Dependencies 

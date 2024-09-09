@@ -344,6 +344,7 @@ class ApiRequest:
             temperature: float = TEMPERATURE,
             max_tokens: int = None,
             prompt_name: str = "default",
+            language: str = "English"
     ):
         '''
         对应api.py/chat/knowledge_base_chat接口
@@ -359,6 +360,7 @@ class ApiRequest:
             "temperature": temperature,
             "max_tokens": max_tokens,
             "prompt_name": prompt_name,
+            "language": language
         }
 
         # print(f"received input message:")
@@ -420,6 +422,7 @@ class ApiRequest:
             temperature: float = TEMPERATURE,
             max_tokens: int = None,
             prompt_name: str = "default",
+            language: str = "English"
     ):
         '''
         对应api.py/chat/file_chat接口
@@ -435,6 +438,7 @@ class ApiRequest:
             "temperature": temperature,
             "max_tokens": max_tokens,
             "prompt_name": prompt_name,
+            "language": language
         }
 
         response = self.post(

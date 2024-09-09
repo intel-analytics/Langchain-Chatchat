@@ -553,7 +553,8 @@ def dialogue_page(api: ApiRequest, is_lite: bool = False):
                                                  history=history,
                                                  model=llm_model,
                                                  prompt_name=prompt_template_name,
-                                                 temperature=temperature):
+                                                 temperature=temperature,
+                                                 language=language):
                     if error_msg := check_error_msg(d):  # check whether error occured
                         st.error(error_msg)
                     elif chunk := d.get("answer"):
@@ -585,7 +586,8 @@ def dialogue_page(api: ApiRequest, is_lite: bool = False):
                                        history=history,
                                        model=llm_model,
                                        prompt_name=prompt_template_name,
-                                       temperature=temperature):
+                                       temperature=temperature,
+                                       language=language):
                     if error_msg := check_error_msg(d):  # check whether error occured
                         st.error(error_msg)
                     elif chunk := d.get("answer"):
